@@ -9,7 +9,7 @@ class Info extends React.Component {
 
    return (
      <div style={{margin:'100px'}}>
-      <div style={{border:'solid',borderRadius:'9px' ,height: '400px', paddingTop:'100px'}}>
+      <div style={{border:'solid',borderRadius:'9px' ,height: '100px', paddingTop:'100px'}}>
       <center>
         Это информация про эксперимент
       </center>
