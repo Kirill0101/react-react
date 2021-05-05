@@ -222,7 +222,7 @@ class Questionary extends React.Component {
 
 
           <Form.Group controlId="formGridAddress2">
-            <Form.Label style={{textAlign:'justify'}}>Пожалуйста, укажите любой удобный способ связаться с вами. Он может быть использован нами для того, чтобы предложить вам участие в других экспериментах в рамках этого исследования. Если для вас это неудобно, можете оставить поле пустым.</Form.Label>
+            <Form.Label style={{textAlign:'justify'}}>Пожалуйста, укажите любой удобный способ связаться с вами. Он может быть использован нами для того, чтобы предложить вам участие в других экспериментах в рамках этого исследования.</Form.Label>
             <Form.Control ref={this.myRef11}  required placeholder="Способ связи" />
           </Form.Group>
 
