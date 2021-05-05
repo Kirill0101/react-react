@@ -17,7 +17,7 @@ render() {
 return(
 
 <Navbar bg="dark" variant="dark">
-    <Navbar.Brand >Experiment</Navbar.Brand>
+    <Navbar.Brand > Experiment</Navbar.Brand>
     <Nav className="mr-auto">
       <Nav.Link onClick={this.props.logout}>Logout</Nav.Link>
     </Nav>

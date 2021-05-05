@@ -41,12 +41,7 @@ class MyAccountManager(BaseUserManager):
 
 class Account(AbstractBaseUser):
 
-    CHOICES = (
-        ('Beg', 'Beginner'),
-        ('Int', 'Intermediate'),
-        ('Adv', 'Advanced'),
 
-    )
 
     name = models.CharField(max_length=30)
     email = models.EmailField(verbose_name='email', max_length=60, unique=True)
@@ -55,7 +50,6 @@ class Account(AbstractBaseUser):
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
     is_admin = models.BooleanField(default=False)
     is_teacher = models.BooleanField(default=False)
-    experience = models.CharField(max_length=300, choices = CHOICES)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
@@ -78,30 +72,93 @@ class Account(AbstractBaseUser):
         return True
 
 
+class UserQ(models.Model):
+    email = models.TextField()
+    age = models.TextField()
+    sex = models.TextField()
+    language_num = models.TextField()
+    language_child= models.TextField()
+    school = models.TextField()
+    grammar = models.TextField()
+    lexic = models.TextField()
+    language_other = models.TextField()
+    education = models.TextField()
+    language_education = models.TextField()
+    contact = models.TextField()
+    group = models.TextField()
+
+    def __str__(self):
+        return self.group
+
 class Table(models.Model):
+    exp_set = models.TextField()
     list_id = models.TextField()
     sentence = models.TextField()
-    clause = models.TextField()
-    clause_id = models.TextField()
     answer = models.TextField()
     lemma = models.TextField()
-    concept = models.TextField()
     feedback = models.TextField()
     def __str__(self):
         return self.list_id
 
 
+
+class Table2(models.Model):
+    exp_set = models.TextField()
+    list_id = models.TextField()
+    sentence = models.TextField()
+    answer = models.TextField()
+    lemma = models.TextField()
+    feedback = models.TextField()
+    def __str__(self):
+        return self.list_id
+
 class FinalTab(models.Model):
 
     user_name = models.TextField()
-    sentence_id = models.TextField()
+    n_try = models.TextField()
+    date_time = models.TextField()
+    n_id = models.TextField()
+    exp_set = models.TextField()
+
+    answer = models.TextField()
     correct_answer = models.TextField()
-    valuation = models.TextField()
-    paragraph = models.TextField()
-    exp_number = models.TextField()
+
+    answer_rate = models.TextField()
+    feedback_rate = models.TextField()
+    paragraph_rate = models.TextField()
 
     def __str__(self):
-        return self.sentence_id
+        return self.user_name
+
+
+
+class FinalTab2(models.Model):
+
+    user_name = models.TextField()
+    n_try = models.TextField()
+    date_time = models.TextField()
+    n_id = models.TextField()
+    exp_set = models.TextField()
+
+    answer = models.TextField()
+    correct_answer = models.TextField()
+
+    answer_rate = models.TextField()
+    feedback_rate = models.TextField()
+    paragraph_rate = models.TextField()
+
+    def __str__(self):
+        return self.user_name
+
+
+
+class Orden(models.Model):
+    user_mail = models.TextField()
+    user_number = models.TextField()
+    user_try = models.TextField()
+
+    def __str__(self):
+        return self.user_mail
 
 class UploadFileForm(models.Model):
     title = models.CharField(max_length=50)

@@ -72,7 +72,6 @@ export const authEmail = (email) => ({type: AUTH_EMAIL,email : email})
 export const logout = () => {
   localStorage.removeItem('token');
 
-  //localStorage.removeItem('expirationDate');
 
   return {
     type: AUTH_LOGOUT,
@@ -80,15 +79,7 @@ export const logout = () => {
   }
 }
 
-/*
-export const checkAuthTimeout = expirationDate => {
-  return dispatch => {
-    setTimeout(() => {
-      dispatch(logout());
-    }, expirationDate * 1000)
-  }
-}
-*/
+
 
 
 export const authLogin = (email, password) => {
@@ -97,16 +88,12 @@ export const authLogin = (email, password) => {
     authAPI.login(email, password)
     .then(res=> {
       const token = res.data.key;
-
-      //const expirationDate = new Date(new Date().getTime() + 3600 *1000)
       localStorage.setItem('token',token);
-      //localStorage.setItem('expirationDate',token);
-
       dispatch(authSuccess(token));
-    //  dispatch(checkAuthTimeout(3600))
 
     })
     .catch(err =>{
+
       dispatch(authFail(err))
     })
   }
@@ -120,14 +107,7 @@ export const authCheckState = () => {
       dispatch(logout())
     } else{
         dispatch(authSuccess(token))
-        //const expirationDate = new Date(localStorage.getItem('expirationDate'))
-        /*
-        if (expirationDate <= new Date()){
-          dispatch(logout());
-        } else {
-          dispatch(authSuccess(token));
-          dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime())/1000))}
-          */
+
     }
   }
 }

@@ -5,7 +5,9 @@ import {authLogin} from './redux/auth-reducer.js'
 import {authEmail} from './redux/auth-reducer.js'
 import { myUser } from './redux/users-reducer.js'
 import { Redirect } from 'react-router-dom'
+import Footer from './Footer.jsx'
 
+import Alert from 'react-bootstrap/Alert'
 
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -60,8 +62,6 @@ class Login extends React.Component {
          this.props.onAuth(email,password)
          this.props.getEmail(email)
 
-
-         //if (this.props.token){  this.props.history.push('/experiment')}
        }
 
        componentDidUpdate(){
@@ -77,27 +77,31 @@ class Login extends React.Component {
 
   render(){
 
+  var alert
+    if (this.props.error !=null){
 
-    let errorMessage = null;
-      if (this.props.error){
-        errorMessage = ( <p>{this.props.error.message}</p> )
-        }
+
+
+         alert = <Alert  variant='danger' style={{width:'300px',marginTop:'50px'}}>Неверный логин и/или пароль</Alert>
+
+
+    }
+
 
 
   return (
 
 <>
       {this.renderRedirect()}
-    <Container style= {{border:'solid #007bff',borderRadius: '5px', marginTop: '50px', padding: '20px'}}>
+    <Container style= {{border:'solid #17a2b8',borderRadius: '5px', marginTop: '50px', padding: '20px', width:'300px'}}>
   <Row>
     <Col>
 
-      {errorMessage}
 
     <Form >
     <Form.Group controlId="formBasicEmail">
     <Form.Label>Email address</Form.Label>
-    <Form.Control   ref={this.myRef}  label="Email"  name="email" type="email" placeholder="Enter email" />
+    <Form.Control   ref={this.myRef}  label="Email"  name="email" type="email" placeholder="Enter email"/>
     <Form.Text className="text-muted">
       We'll never share your email with anyone else.
     </Form.Text>
@@ -108,11 +112,11 @@ class Login extends React.Component {
     <Form.Control  isInvalid={this.con} ref={this.myRef2}  label="Password" name="password" type="password" placeholder="Password" />
     </Form.Group>
 
-    <Button variant="primary" onClick={(event)=>{this.handleSubmit(event)}}>
+    <Button variant="info" onClick={(event)=>{this.handleSubmit(event)}}>
     Login
     </Button>
 
-    <Button variant="primary" style= {{marginLeft : '10px'}}onClick={this.setRedirect}>
+    <Button variant="info" style= {{marginLeft : '10px'}}onClick={this.setRedirect}>
     Sign up
     </Button>
 
@@ -121,8 +125,14 @@ class Login extends React.Component {
 
     </Col>
   </Row>
+
 </Container>
+<center>
+    {alert}
+</center>
+
 </>
+
   );
 }
 }
@@ -131,8 +141,7 @@ class Login extends React.Component {
 const mapStateToProps = (state) => {
 
     return {
-    loading: state.loading,
-    error: state.error,
+    error: state.auth.error,
     users: state.users.users,
     email : state.auth.email,
     token : state.auth.token,

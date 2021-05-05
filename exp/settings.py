@@ -13,8 +13,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-import decouple
-import dotenv
+#import decouple
+#import dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
@@ -35,6 +35,9 @@ SECRET_KEY = '!0j2odas)3anhy@11ph#7c#ud$5g_bc+^$yz_gozckm!c*rs88'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
+
+
+#DEBUG = True
 
 
 ALLOWED_HOSTS = ['django-project-app0101.herokuapp.com', '127.0.0.1', 'http://localhost/']
@@ -104,8 +107,8 @@ DATABASES = {}
 
 
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-'''
 
+'''
 options = DATABASES['default'].get('OPTIONS', {})
 options.pop('sslmode', None)
 
@@ -114,11 +117,11 @@ options.pop('sslmode', None)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3'),
     }
 }
-'''
 
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
